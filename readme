@@ -1,0 +1,157 @@
+🏥 Real-Time Healthcare Data Engineering Pipeline on GCP
+
+Build a Real-Time Healthcare Data Engineering Project on Google Cloud Platform (GCP).
+
+This project implements a Patient Vitals Monitoring System — an end-to-end streaming data pipeline that runs entirely in the cloud and processes healthcare data in real time.
+
+The system streams patient vitals such as heart rate, oxygen saturation (SpO₂), and body temperature using Google Cloud Pub/Sub, processes the streaming data using Apache Beam on Dataflow, and stores analytics-ready data in BigQuery following the Medallion Architecture (Bronze → Silver → Gold).
+
+Finally, the processed data is visualized in Power BI dashboards, enabling real-time monitoring of patient health metrics.
+
+This architecture reflects how modern healthcare platforms process IoT-style medical data streams for real-time analytics and decision-making.
+
+📊 Project Architecture
+Patient Simulator (Python)
+        │
+        ▼
+   Google Cloud Pub/Sub
+        │
+        ▼
+   Dataflow (Apache Beam)
+        │
+        ├─────────────► Bronze Layer (Raw Data - GCS)
+        │
+        ▼
+   Silver Layer (Cleaned Data - GCS)
+        │
+        ▼
+   Gold Layer (Analytics Data - BigQuery)
+        │
+        ▼
+   Power BI Dashboard
+
+Pipeline Flow
+
+A Python simulator generates patient vitals.
+
+Data is streamed into Pub/Sub topics.
+
+Dataflow streaming pipelines process incoming data.
+
+Data is stored using the Medallion Architecture.
+
+Analytics data is visualized in Power BI dashboards.
+
+🥇 Medallion Architecture
+
+The project uses a multi-layer Medallion Architecture to structure and improve data quality through different processing stages. The architecture organizes data into Bronze, Silver, and Gold layers, where each layer represents a higher level of data refinement and usability.
+
+Bronze Layer (Raw Data)
+
+Stores raw streaming data directly from Pub/Sub
+
+Data is stored in Google Cloud Storage (GCS)
+
+No transformations applied
+
+Silver Layer (Cleaned Data)
+
+Data cleaning and transformation
+
+Handles schema normalization
+
+Removes invalid or duplicate records
+
+Gold Layer (Analytics Layer)
+
+Aggregated and business-ready datasets
+
+Stored in BigQuery
+
+Used for analytics, dashboards, and reporting
+
+This layered architecture improves data governance, scalability, and analytics readiness.
+
+⚙️ Technologies Used
+Technology	Purpose
+Google Cloud Platform	Cloud infrastructure
+Pub/Sub	Real-time streaming data ingestion
+Dataflow (Apache Beam)	Stream processing and ETL
+Google Cloud Storage	Bronze & Silver data layers
+BigQuery	Analytics data warehouse
+Power BI	Data visualization dashboards
+Python	Simulator and pipeline development
+Git & GitHub	Version control
+
+Google Cloud Pub/Sub enables event-driven streaming architectures, allowing systems to process data in real time across distributed services.
+Dataflow provides a fully managed platform for scalable batch and streaming data processing using Apache Beam.
+
+🧠 What You Will Learn
+
+✔ Real-time streaming data ingestion using Pub/Sub
+✔ Building streaming pipelines with Apache Beam
+✔ Implementing Medallion Architecture in cloud data platforms
+✔ Processing streaming healthcare data using Dataflow
+✔ Designing scalable analytics pipelines with BigQuery
+✔ Building real-time healthcare dashboards in Power BI
+✔ Deploying and monitoring streaming jobs in GCP Console
+
+📁 Project Structure
+patient-vital-monitoring
+│
+├── simulator
+│   └── patient_vitals_simulator.py
+│
+├── dataflow
+│   └── streaming_medallion_pipeline.py
+│
+├── requirements.txt
+├── .env.example
+└── README.md
+🚀 How to Run the Project
+1️⃣ Clone the Repository
+git clone https://github.com/your-username/patient-vital-monitoring.git
+cd patient-vital-monitoring
+2️⃣ Install Dependencies
+pip install -r requirements.txt
+3️⃣ Configure Environment Variables
+
+Create a .env file:
+
+GCP_PROJECT=your_project_id
+PUBSUB_SUBSCRIPTION=projects/your_project/subscriptions/patient_vitals_subscription
+BRONZE_PATH=gs://bucket/bronze/
+SILVER_PATH=gs://bucket/silver/
+BIGQUERY_TABLE=project.dataset.table
+TEMP_LOCATION=gs://bucket/temp/
+STAGING_LOCATION=gs://bucket/staging/
+REGION=us-central1
+4️⃣ Run Patient Simulator
+python simulator/patient_vitals_simulator.py
+5️⃣ Deploy Streaming Dataflow Pipeline
+python dataflow/streaming_medallion_pipeline.py
+📈 Example Dashboard Insights
+
+The Power BI dashboard provides real-time healthcare analytics such as:
+
+Average patient heart rate
+
+Oxygen saturation monitoring
+
+Body temperature alerts
+
+High-risk patient detection
+
+Real-time patient vitals streaming
+
+🔮 Future Improvements
+
+Add machine learning risk prediction
+
+Integrate Google Cloud Healthcare API
+
+Implement real-time anomaly detection
+
+Add alert systems for abnormal vitals
+
+Use Looker Studio for native GCP dashboards
